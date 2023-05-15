@@ -1,32 +1,43 @@
 <mat-sidenav-container fullscreen>
-    <mat-sidenav #sidenav mode="push" [ngStyle]="{width: '250px'}">
-        <mat-toolbar>
-            <span>Menú</span>
-            <span class="spacer"></span>
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </mat-toolbar>
-        <mat-nav-list>
-            <mat-list-item
-            *ngFor="let item of sideBarItems"
-            [routerLink]="item.url"
-            (click)="sidenav.toggle()">
-            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon> 
-            {{ item.label }}
-            </mat-list-item>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-toolbar color="accent">
-        <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span class="spacer"></span>
-        <button mat-button>
-            Logout
-        </button>
-    </mat-toolbar>
-    <div class="container">
-        <router-outlet></router-outlet>
+  <mat-toolbar  color="primary">
+    <div class="flex align-items-center gap-3">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img
+        class="w-10rem hidden md:block"
+        src="assets/logo/wiki-fantasy-high-resolution-logo-color-on-transparent-background.png"
+      />
     </div>
+    <span class="spacer"></span>
+    <div class="flex align-items-center gap-4">
+      <img id="avatar" mat-card-avatar src="https://pngimg.com/d/mandalorian_PNG23.png" class="m-0">
+        <span>¡Hola! {{ user?.user }}</span>
+        <button mat-icon-button color="warn" (click)="onLogout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav #sidenav mode="over" [ngStyle]="{ width: '250px' }">
+    <mat-toolbar>
+      <span>Menú</span>
+      <span class="spacer"></span>
+      <!-- <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button> -->
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let item of sideBarItems"
+        [routerLink]="item.url"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        {{ item.label }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="container p-2" id="heroes">
+    <router-outlet></router-outlet>
+  </div>
 </mat-sidenav-container>

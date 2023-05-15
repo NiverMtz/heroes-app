@@ -1,5 +1,9 @@
 <div class="flex flex-column">
-    <span class="text-lg mb-4">Login</span>
+    <div class="flex justify-content-between align-items-start mb-4">
+        <img class="w-10rem hidden md:block"
+            src="assets/logo/wiki-fantasy-high-resolution-logo-color-on-transparent-background.png" />
+        <span class="text-3xl text-white">Login</span>
+    </div>
     <mat-form-field>
         <mat-label>Usuario</mat-label>
         <input type="text" matInput placeholder="Nombre de Usuario">
@@ -8,12 +12,15 @@
         <mat-label>Contraseña</mat-label>
         <input type="text" matInput placeholder="Contraseña">
     </mat-form-field>
-    <button mat-button mat-flat-button color="accent">
+    <button mat-button
+    mat-flat-button
+     color="primary"
+     (click)="onLogin()">
         <mat-icon>login</mat-icon>
         Ingresar
     </button>
 
     <div class="flex justify-content-end mt-5">
-        <a routerLink="/auth/new-account">¿Ya tienes cuenta?</a>
+        <a class="text-white" routerLink="/auth/new-account">¿No tienes cuenta?</a>
     </div>
 </div>

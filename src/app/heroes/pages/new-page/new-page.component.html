@@ -1,1 +1,84 @@
-<p>new-page works!</p>
+<h1>
+    {{ currentHero.id ? 'Editar: ' + currentHero.superhero : 'Agregar héroe' }}
+</h1>
+<mat-divider class="mb-2"></mat-divider>
+
+<div class="grid">
+    <div class="col-12 sm:col-6">
+        <mat-card>
+            <mat-card-content>
+                <form class="grid"
+                        [formGroup]="heroForm"
+                        (ngSubmit)="onSubmit()">
+                    <mat-form-field class="col-12 sm:col-6">
+                        <mat-label>Personaje</mat-label>
+                        <input type="text"
+                        matInput
+                        required
+                        formControlName="superhero">
+                    </mat-form-field>
+                    <mat-form-field class="col-12 sm:col-6">
+                        <mat-label>Alter ego</mat-label>
+                        <input type="text"
+                        matInput
+                        required
+                        formControlName="alter_ego">
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>Descripción</mat-label>
+                        <input type="text"
+                        matInput
+                        required
+                        formControlName="first_appearance">
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>Poderes, habilidades, otros.</mat-label>
+                        <input type="text"
+                        matInput
+                        required
+                        formControlName="characters">
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>Tipo de personaje</mat-label>
+                        <mat-select required
+                                    formControlName="publisher">
+                            <mat-option *ngFor="let publisher of publishers" 
+                            [value]="publisher.id">
+                                {{ publisher.description }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>Url de imagen</mat-label>
+                        <input type="text"
+                        matInput
+                        formControlName="alt_img">
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions class="flex justify-content-end gap-3">
+                <button
+                *ngIf="currentHero.id" 
+                mat-flat-button
+                color="warn"
+                (click)="onDeleteHero()">
+                <mat-icon>delete</mat-icon>
+                    Borrar
+                </button>
+                <button mat-flat-button
+                color="primary"
+                (click)="onSubmit()">
+                <mat-icon>save</mat-icon>
+                    Guardar
+                </button>  
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="col-12 sm:col-6">
+        <mat-card>
+            <img matCardImage 
+            [src]="currentHero | heroImage" 
+            alt="imagen del héroe">
+        </mat-card>
+    </div>
+</div>
